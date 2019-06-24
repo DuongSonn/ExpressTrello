@@ -1,0 +1,16 @@
+extends layout/index  
+block content
+    .container
+      form
+        .form-group
+          label(for='') Username
+          input#username.form-control(type='text', placeholder='')
+        .form-group
+          label(for='') Password
+          input#password.form-control(type='text', placeholder='')
+        .form-group
+          .form-check
+            input#gridCheck.form-check-input(type='checkbox')
+            label.form-check-label(for='gridCheck')
+              | Remember me
+        button.btn.btn-primary(type='submit') Sign in

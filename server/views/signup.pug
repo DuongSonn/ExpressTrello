@@ -1,0 +1,25 @@
+extends layout/index
+block content
+    .container
+      form
+        .form-row
+          .form-group.col-md-6
+            label(for='') Username
+            input#username.form-control(type='email', placeholder='')
+          .form-group.col-md-6
+            label(for='inputPassword4') Password
+            input#inputPassword4.form-control(type='password', placeholder='Password')
+        .form-group
+          label(for='inputAddress') Email
+          input#email.form-control(type='text')
+        .form-group
+          label(for='inputAddress2') Phone
+          input#phone.form-control(type='text')
+        .form-row
+          label(for='inputState') State
+          select#inputState.form-control
+            option(selected='') Choose...
+            option 1
+            option 2
+        br
+        button.btn.btn-primary(type='submit') Create account
