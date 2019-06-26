@@ -1,25 +1,25 @@
 extends layout/index
 block content
     .container
-      form
+      form(method='POST')
         .form-row
           .form-group.col-md-6
             label(for='') Username
-            input#username.form-control(type='email', placeholder='')
+            input#username.form-control(type='text', placeholder='',name='name')
           .form-group.col-md-6
             label(for='inputPassword4') Password
-            input#inputPassword4.form-control(type='password', placeholder='Password')
+            input#inputPassword4.form-control(type='password', placeholder='Password',name='password')
         .form-group
           label(for='inputAddress') Email
-          input#email.form-control(type='text')
+          input#email.form-control(type='text', name='email')
         .form-group
           label(for='inputAddress2') Phone
-          input#phone.form-control(type='text')
+          input#phone.form-control(type='text', name='phone')
         .form-row
           label(for='inputState') State
-          select#inputState.form-control
+          select#inputState.form-control(name='state')
             option(selected='') Choose...
-            option 1
-            option 2
+            option(name='state1', value='1') 1
+            option(name='state2', value='2') 2
         br
         button.btn.btn-primary(type='submit') Create account

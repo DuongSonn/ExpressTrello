@@ -1,16 +1,16 @@
 extends layout/index  
 block content
     .container
-      form
+      form(method='POST')
         .form-group
-          label(for='') Username
-          input#username.form-control(type='text', placeholder='')
+          label(for='') Email
+          input#email.form-control(type='text', placeholder='', name='email')
         .form-group
           label(for='') Password
-          input#password.form-control(type='text', placeholder='')
+          input#password.form-control(type='text', placeholder='', name='password')
         .form-group
           .form-check
-            input#gridCheck.form-check-input(type='checkbox')
+            input#gridCheck.form-check-input(type='checkbox' name='remember')
             label.form-check-label(for='gridCheck')
               | Remember me
         button.btn.btn-primary(type='submit') Sign in

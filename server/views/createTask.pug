@@ -1,0 +1,19 @@
+extends layout/index
+block content
+    .container
+      form(method='POST')
+        .form-row
+          .form-group.col-md-6
+            label(for='') Name
+            input#username.form-control(type='text', placeholder='',name='name')
+        .form-group
+          label(for='inputAddress') Task Detail
+          textarea#taskDetail.form-control(name='taskDetail')
+        .form-group
+          label(for='') Member
+          select#inputState.form-control(name='member')
+            option(selected='') Choose...
+            option(name='member1', value='1') 1
+            option(name='member2', value='2') 2       
+          
+        button.btn.btn-primary(type='submit') Create task
