@@ -2,25 +2,33 @@ const express = require('express');
 const router = express.Router();
 const TaskModel = require('../../../models/mongoose/task');
 const UserModel = require('../../../models/mongoose/user');
-
+const updatedetailRouter = require('./updateDetail/index');
 module.exports = () =>{
+    router.use('/detail', updatedetailRouter());
     router.get('/', (req,res,next)=>{
-        UserModel.find({}, function (err, users) {
+        const userInfo = req.session.userInfo;
+        TaskModel.find({}, function (err, tasks) {
             if (err) {
                 console.log(err)
             } else {
-                res.render('createTask', {
-                    users : users
+                res.render('listTask', {
+                    user : userInfo.name,
+                    tasks : tasks
                 });
             }
         });
     });
     router.post('/', async (req,res,next) => {
         try {
-            const {name, taskDetail ,member} = req.body;
-            console.log(member);
-            const userCreate = await TaskModel.create({name,taskDetail,member});
-            console.log(userCreate);
+            const {name} = req.body; 
+            console.log("Name task : "+ name);
+            await TaskModel.find({'name': name}, function(err , task,){
+                console.log(task);
+                res.render('updateTask.pug',{
+                    page : 'Giao Task',
+                    task : task
+                });
+            });
             if (userCreate) {
                 return res.redirect('/');
             } else {

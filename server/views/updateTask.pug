@@ -11,9 +11,7 @@ html(lang='en')
 		script(src='http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js')
 		style.
 			body {
-      
 			background: #C5E1A5;
-      
 			}
 			form {
 			width: 60%;
@@ -84,8 +82,6 @@ html(lang='en')
 			background: #8BC34A;
 			color: #ffffff;
 			}
-
-      
 	body
 		nav.navbar.navbar-expand-sm.navbar-dark(style='background-color: #b0dd92;')
 			a.navbar-brand(href='#') Express JS
@@ -97,27 +93,28 @@ html(lang='en')
 							| Home 
 							span.sr-only (current)
 					li.nav-item.active
-						a.nav-link(href='createtask') Create Task
+						a.nav-link(href='/createTask') Create Task
 					li.nav-item.active
-						a.nav-link(href='updateTask') Giao task
+						a.nav-link(href='/updateTask') Giao task
 				span.navbar-text-(style='color : #6495ED') LogOut
 		form(method='POST')
 			label
 				.form-group
 					p.label-txt Name Task
-					input.input(type='text', name='name')
+					input.input(type='text', name='name' value=task.name)
 					.line-box
 						.line
 			label
 				.form-group
 					p.label-txt Task Detail
 					br
-					textarea#my-textarea.form-control(name='taskDetail', style='height: 120px; resize:none' rows='3')
+					textarea#my-textarea.form-control(name='taskDetail', rows='3' placeholder=task.taskDetail style='height: 120px; resize:none' )
 			label
 				.form-group
 					p.label-txt Member
 					br
-					select#my-select.custom-select(name='member')
+					select#my-select.custom-select(name='member') 
+						option(selected='') #{task.member}
 						each user in users
 							option(name='member', value= user.name) #{user.name}
 			button(type='submit') submit

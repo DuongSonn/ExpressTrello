@@ -1,0 +1,71 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		// This file has been downloaded from Bootsnipp.com. Enjoy!
+		title Express JS
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		link(href='http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css', rel='stylesheet')
+		style(type='text/css').
+		script(src='http://code.jquery.com/jquery-1.11.1.min.js')
+		script(src='http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js')
+	body
+		nav.navbar.navbar-expand-sm.navbar-dark(style='background-color: #b0dd92;')
+			a.navbar-brand(href='#') Express JS
+			button.navbar-toggler.d-lg-none(type='button', data-toggle='collapse', data-target='#collapsibleNavId', aria-controls='collapsibleNavId', aria-expanded='false', aria-label='Toggle navigation')
+			#collapsibleNavId.collapse.navbar-collapse
+				ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+					li.nav-item.active
+						a.nav-link(href='/')
+							| Home 
+							span.sr-only (current)
+					li.nav-item.active
+						a.nav-link(href='createtask') Create Task
+					li.nav-item.active
+						a.nav-link(href='updateTask') Giao task
+				span.navbar-text-(style='color : #6495ED')  
+						a.nav-link(href='main/exit') Hello, #{user}
+	
+
+		.container.bg-light.border.pb-2
+			nav.navbar.navbar-light
+				form.form-inline
+					input.form-control.mr-sm-2.srch(type='text', placeholder='Search')
+			#accordion(role='tablist')
+				.card
+				each task in tasks
+					.card-header(role='tab', id=('heading'+task._id))
+						span.badge.badge-primary.badge-pill.incat-count 0
+						a(data-toggle='collapse', href=('#'+task._id), aria-expanded='falese', aria-controls='collapseOne')
+							| #{task.name}
+					.collapse.show(role='tabpanel',id=(task._id), aria-labelledby='headingOne')
+						.card-body.p-0
+							ul.list-group.cat-list
+								li.list-group-item Detail  : #{task.taskDetail}
+								li.list-group-item Member : #{task.member}
+								li.list-group-item Created At : #{task.createdAt}
+								li.list-group-item 
+									a(href='updateTask/detail/'+task._id)
+										button.btn.btn-info(type='button') Giao Task
+
+		script(type='text/javascript').
+			$(document).ready(function(){
+			$('.cat-list li').addClass('fnd');
+			function counter_set()
+			{
+			$('.cat-list').each(function() {
+			var cnt = $(this).children('.cat-list li.fnd').length;
+			$(this).parent().parent().parent().find('.incat-count').text(cnt);
+			});
+			}
+			counter_set();
+			$('.srch').keyup(function(){
+			var txt = $(this).val().toLowerCase();
+			$('.cat-list li').filter(function(){
+			var mt = $(this).text().toLowerCase().indexOf(txt) > -1;
+			$(this).toggle(mt);
+			$(this).toggleClass('fnd', mt);
+			});
+			counter_set();
+			});
+			});
